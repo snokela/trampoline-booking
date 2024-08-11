@@ -1,9 +1,11 @@
 import './App.css';
+// import './index.css';
+import Header from './components/Header';
 
 function App() {
   return (
     <div className="App">
-      <p>TÄHÄN KOOTAAN TRAMPOLIININ VARAUS-SOVELLUS</p>
+      <Header />
     </div>
   );
 }
