@@ -11,9 +11,13 @@
   padding-left: 5rem;
 }
 
-.start-button {
+.button {
   background-color: #303c4c !important;
   border: none !important;
+}
+
+.current-jumper {
+  width: 20rem;
 }
 
 /* .navbar {

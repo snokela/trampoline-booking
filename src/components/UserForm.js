@@ -19,7 +19,7 @@ const UserForm = () => {
               </Row>
               <Row className="justify-content-center mt-3">
                 <Col md={3}>
-                  <Button className="start-button" >
+                  <Button className="button" >
                     Aloita hyppiminen
                   </Button>
                 </Col>
