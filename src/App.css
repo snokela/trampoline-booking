@@ -11,6 +11,11 @@
   padding-left: 5rem;
 }
 
+.start-button {
+  background-color: #303c4c !important;
+  border: none !important;
+}
+
 /* .navbar {
   width: 100%;
 } */
