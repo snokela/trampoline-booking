@@ -12,6 +12,7 @@ function App() {
   const [currentJumper, setCurrentJumper] =  useState(null);
   const [jumpTime, setJumpTime] = useState(0);
   const [isJumping, setIsJumping] = useState(false);
+  const [jumpStopped, setJumpStopped] = useState(false)
   const intervalRef = useRef(null)
 
   // haetaan pomppijat 'useEffect' -hookilla ja asetetaan se 'jumpers' tilaan
@@ -45,18 +46,22 @@ function App() {
     setCurrentJumper(selectedJumper)
     setIsJumping(true);
     setJumpTime(0);
+    setJumpStopped(false);
   }
 
   // funktio joka lopettaa pomppimisen
   const handleStopJumping = () => {
+    console.log('tämä pomppija lopetti pomppimisen: ' + JSON.stringify(currentJumper) )
+    console.log('pomppimisaika lopettamisen jälkeen: ' + jumpTime )
     setIsJumping(false);
+    setJumpStopped(true);
   }
 
   return (
     <div className="App">
       <Header />
       <UserForm jumpers={jumpers} isJumping={isJumping} onStartJumping={handleStartJumping} />
-      <CurrentJumper currentJumper={currentJumper} onStopJumping={handleStopJumping} jumpTime={jumpTime} />
+      <CurrentJumper currentJumper={currentJumper} onStopJumping={handleStopJumping} jumpTime={jumpTime} jumpStopped={jumpStopped} />
     </div>
   );
 }

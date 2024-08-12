@@ -40,7 +40,7 @@ const UserForm = ( { jumpers, isJumping, onStartJumping } ) => {
               </Row>
               <Row className="justify-content-center mt-3">
                 <Col md={3}>
-                  <Button className="button" onClick={handleStartClick} disabled={isJumping} >
+                  <Button className="button" onClick={handleStartClick} disabled={isJumping || !selectedJumper}>
                     Aloita pomppiminen
                   </Button>
                 </Col>
