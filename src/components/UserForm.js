@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import '../App.css';
 
-const UserForm = ( { jumpers, isJumping, onStartJumping } ) => {
+const UserForm = ( { jumpers, isJumping, onStartJumping, setSelectedJumper } ) => {
   // valitun pomppijan tilanhallinta ja tilan päivittäminen pomppijaa valitessa
-  const [selectedJumper, setSelectedJumper] = useState('');
+  const [selectedJumper, setSelectedJumperState] = useState('');
+
+  useEffect(() => {
+    if (!isJumping) {
+      setSelectedJumperState('');
+    }
+  }, [isJumping]);
 
   const handleSelectChange = (event) => {
-    setSelectedJumper(event.target.value);
+    setSelectedJumperState(event.target.value);
     console.log('valittu jumper Id: ' + event.target.value);
   }
 
@@ -32,7 +38,7 @@ const UserForm = ( { jumpers, isJumping, onStartJumping } ) => {
               <Row className="justify-content-center">
                 <Col  md={3} >
                 <Form.Label>Valitse nimesi alla olevasta listasta:</Form.Label>
-                  <Form.Select size="sm" value={selectedJumper} onChange={handleSelectChange} >
+                  <Form.Select size="sm" value={selectedJumper} onChange={handleSelectChange} disabled={isJumping} >
                     <option value="">Valitse pomppija</option>
                    { renderOptions() }
                   </Form.Select>
