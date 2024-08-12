@@ -14,11 +14,11 @@ const UserForm = ( { jumpers, isJumping, onStartJumping, setSelectedJumper } ) =
 
   const handleSelectChange = (event) => {
     setSelectedJumperState(event.target.value);
-    console.log('valittu jumper Id: ' + event.target.value);
+    // console.log('valittu jumper Id: ' + event.target.value);
   }
 
   const handleStartClick = () => {
-    console.log('Aloita pomppinen nappia painettu. Valitun pomppijan ID: ' + selectedJumper);
+    // console.log('Aloita pomppinen nappia painettu. Valitun pomppijan ID: ' + selectedJumper);
     if (selectedJumper) {
       onStartJumping(Number(selectedJumper));
     }
