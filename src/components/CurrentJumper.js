@@ -9,12 +9,12 @@ const CurrentJumper = () => {
       <Card className="current-jumper">
         <Card.Img variant="top" src={inkkuImage} />
         <CardBody>
-          <Card.Title>Nyt hyppii <span className="fw-bolder fst-italic">Inkku</span></Card.Title>
+          <Card.Title>Nyt pomppii <span className="fw-bolder fst-italic">Marsu</span></Card.Title>
           <Card.Text>
-            Olet nyt hyppinyt <span className="fw-bolder fst-italic">8</span> minuutti ja <span className="fw-bolder fst-italic">26</span> sekuntia.
+            Olet nyt pomppinut <span className="fw-bolder fst-italic">8</span> minuuttia ja <span className="fw-bolder fst-italic">26</span> sekuntia.
           </Card.Text>
           <Button className="button">
-            Lopeta hyppiminen
+            Lopeta pomppiminen
           </Button>
         </CardBody>
       </Card>

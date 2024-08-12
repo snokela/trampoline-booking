@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import '../App.css';
 
-const UserForm = () => {
+const UserForm = ( {jumpers} ) => {
+  // valitun pomppijan tilanhallinta ja tilan päivittäminen pomppijaa valitessa
+  const [selectedJumper, setSelectedJumper] = useState('');
+
+  const handleSelectChange = (event) => {
+    setSelectedJumper(event.target.value);
+  }
+
+  // renderöidään optionsit dropdown listaan pomppijoista
+  const renderOptions = () => {
+    return jumpers.map(jumper => (
+      <option key={jumper.id} value={jumper.id}>{jumper.name}</option>
+    ));
+  }
+
   return (
       <Container>
             <Form className="userform pt-4">
@@ -10,17 +24,16 @@ const UserForm = () => {
               <Row className="justify-content-center">
                 <Col  md={3} >
                 <Form.Label>Valitse nimesi alla olevasta listasta:</Form.Label>
-                  <Form.Select size="sm" >
-                    <option></option>
-                    <option value="1">Inkku</option>
-                    <option value="2">Marsu</option>
+                  <Form.Select size="sm" value={selectedJumper} onChange={handleSelectChange} >
+                    <option value="">Valitse pomppija</option>
+                   { renderOptions() }
                   </Form.Select>
                 </Col>
               </Row>
               <Row className="justify-content-center mt-3">
                 <Col md={3}>
                   <Button className="button" >
-                    Aloita hyppiminen
+                    Aloita pomppiminen
                   </Button>
                 </Col>
               </Row>
