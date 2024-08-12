@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import '../App.css';
 
-const UserForm = ( {jumpers} ) => {
+const UserForm = ( { jumpers, isJumping, onStartJumping } ) => {
   // valitun pomppijan tilanhallinta ja tilan päivittäminen pomppijaa valitessa
   const [selectedJumper, setSelectedJumper] = useState('');
 
   const handleSelectChange = (event) => {
     setSelectedJumper(event.target.value);
+    console.log('valittu jumper Id: ' + event.target.value);
+  }
+
+  const handleStartClick = () => {
+    console.log('Aloita pomppinen nappia painettu. Valitun pomppijan ID: ' + selectedJumper);
+    if (selectedJumper) {
+      onStartJumping(Number(selectedJumper));
+    }
   }
 
   // renderöidään optionsit dropdown listaan pomppijoista
@@ -32,7 +40,7 @@ const UserForm = ( {jumpers} ) => {
               </Row>
               <Row className="justify-content-center mt-3">
                 <Col md={3}>
-                  <Button className="button" >
+                  <Button className="button" onClick={handleStartClick} disabled={isJumping} >
                     Aloita pomppiminen
                   </Button>
                 </Col>
