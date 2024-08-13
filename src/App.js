@@ -6,7 +6,7 @@ import GetJumpers from './components/GetJumpers';
 import { useEffect, useRef, useState } from 'react';
 import JumpHistory from './components/JumpHistory';
 import getCurrentTimeStamp from './utilis/getCurrentTimeStamp';
-import { saveJumpingData } from './utilis/storageUtilis';
+import { getJumpingData, saveJumpingData } from './utilis/storageUtilis';
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
   const [jumpStopped, setJumpStopped] = useState(false);
   const intervalRef = useRef(null);
   const startDateTimeRef = useRef(null);
+  const [history, setHistory] = useState([]);
 
   // haetaan pomppijat 'useEffect' -hookilla ja asetetaan se 'jumpers' tilaan
   useEffect(() => {
@@ -74,6 +75,10 @@ function App() {
 
     // talletetaan jumping data
     saveJumpingData(jumpingData);
+
+    // päivitetään history-tila tallenuksen jälkeen
+    const updateHistory = getJumpingData();
+    setHistory(updateHistory);
     // tyhjennetään startDateTimeRef
     startDateTimeRef.current = null;
   }
@@ -83,7 +88,7 @@ function App() {
       <Header />
       <UserForm jumpers={jumpers} isJumping={isJumping} onStartJumping={handleStartJumping} />
       <CurrentJumper currentJumper={currentJumper} onStopJumping={handleStopJumping} jumpTime={jumpTime} jumpStopped={jumpStopped} />
-      <JumpHistory />
+      <JumpHistory history={history} />
     </div>
   );
 }
