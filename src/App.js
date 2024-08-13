@@ -63,13 +63,15 @@ function App() {
 
     const jumpingData = {
       name: currentJumper.name,
-      time: jumpTime,
+      timeSecs: jumpTime,
       startDate: startDateTimeRef.current.date,
       startTime: startDateTimeRef.current.time,
       endDate: endDateTime.date,
       endTime: endDateTime.time
     };
     console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
+    // tyhjennetään startDateTimeRef 
+    startDateTimeRef.current = null;
   }
 
   return (
