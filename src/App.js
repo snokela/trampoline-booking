@@ -5,6 +5,7 @@ import CurrentJumper from './components/CurrentJumper';
 import GetJumpers from './components/GetJumpers';
 import { useEffect, useRef, useState } from 'react';
 import JumpHistory from './components/JumpHistory';
+import getCurrentDateTime from './utilis/getCurrentDateTime';
 
 function App() {
 
@@ -13,8 +14,9 @@ function App() {
   const [currentJumper, setCurrentJumper] =  useState(null);
   const [jumpTime, setJumpTime] = useState(0);
   const [isJumping, setIsJumping] = useState(false);
-  const [jumpStopped, setJumpStopped] = useState(false)
-  const intervalRef = useRef(null)
+  const [jumpStopped, setJumpStopped] = useState(false);
+  const intervalRef = useRef(null);
+  const startDateTimeRef = useRef(null);
 
   // haetaan pomppijat 'useEffect' -hookilla ja asetetaan se 'jumpers' tilaan
   useEffect(() => {
@@ -38,12 +40,11 @@ function App() {
 
   // funktio, joka käynnistää pomppimisen
   const handleStartJumping = (jumperId) => {
-    // etsitään nykyinen hyppijä
-    // console.log('handleStartJumping called with jumperId:', jumperId); // Logita jumperId
-    // console.log('Current jumpers list:', jumpers); // Logita nykyinen jumpers lista
     const selectedJumper = jumpers.find(jumper => jumper.id === jumperId);
     // console.log('Valittu pomppija on: ' + JSON.stringify(selectedJumper))
-
+    // setStartDateTime(getCurrentDateTime());
+    // console.log('datetimedata kun painetaa aloita nappia: ' + startDateTime)
+    startDateTimeRef.current =  getCurrentDateTime();
     setCurrentJumper(selectedJumper)
     setIsJumping(true);
     setJumpTime(0);
@@ -57,10 +58,18 @@ function App() {
     setIsJumping(false);
     setJumpStopped(true);
 
+    const endDateTime = getCurrentDateTime();
+    console.log('datetimedata kun painetaa lopeta nappia: ' + endDateTime)
+
     const jumpingData = {
       name: currentJumper.name,
-      time: jumpTime
+      time: jumpTime,
+      startDate: startDateTimeRef.current.date,
+      startTime: startDateTimeRef.current.time,
+      endDate: endDateTime.date,
+      endTime: endDateTime.time
     };
+    console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
   }
 
   return (
