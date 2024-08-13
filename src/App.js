@@ -5,7 +5,8 @@ import CurrentJumper from './components/CurrentJumper';
 import GetJumpers from './components/GetJumpers';
 import { useEffect, useRef, useState } from 'react';
 import JumpHistory from './components/JumpHistory';
-import getCurrentDateTime from './utilis/getCurrentDateTime';
+import getCurrentTimeStamp from './utilis/getCurrentTimeStamp';
+import { saveJumpingData } from './utilis/storageUtilis';
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
     // console.log('Valittu pomppija on: ' + JSON.stringify(selectedJumper))
     // setStartDateTime(getCurrentDateTime());
     // console.log('datetimedata kun painetaa aloita nappia: ' + startDateTime)
-    startDateTimeRef.current =  getCurrentDateTime();
+    startDateTimeRef.current =  getCurrentTimeStamp();
     setCurrentJumper(selectedJumper)
     setIsJumping(true);
     setJumpTime(0);
@@ -58,19 +59,22 @@ function App() {
     setIsJumping(false);
     setJumpStopped(true);
 
-    const endDateTime = getCurrentDateTime();
+    const endDateTime = getCurrentTimeStamp();
     console.log('datetimedata kun painetaa lopeta nappia: ' + endDateTime)
 
     const jumpingData = {
       name: currentJumper.name,
       timeSecs: jumpTime,
-      startDate: startDateTimeRef.current.date,
-      startTime: startDateTimeRef.current.time,
-      endDate: endDateTime.date,
-      endTime: endDateTime.time
+      // startDate: startDateTimeRef.current.date,
+      startTime: startDateTimeRef.current,
+      // endDate: endDateTime.date,
+      endTime: endDateTime
     };
-    console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
-    // tyhjennetään startDateTimeRef 
+    // console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
+
+    // talletetaan jumping data
+    saveJumpingData(jumpingData);
+    // tyhjennetään startDateTimeRef
     startDateTimeRef.current = null;
   }
 
