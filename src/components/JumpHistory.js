@@ -1,18 +1,10 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { getJumpingData } from "../utilis/storageUtilis";
+// import { useState, useEffect } from "react";
+// import { getJumpingData } from "../utilis/getJumpingData";
 import { formatUnixTimeStampToDate } from '../utilis/formatUnixTimeStamps';
 import { formatSeconds } from "../utilis/formatSeconds";
 
 const JumpHistory = ({ history }) => {
-  // const [history, setHistory] = useState([]);
-
-  // useEffect(() => {
-  //   const data = getJumpingData();
-  //   setHistory(data);
-  // }, []);
-
-  // console.log('HISTORY-data on nyt tämä: ' + JSON.stringify(history))
 
   return (
     <div className="justify-content-center pb-3">

@@ -6,11 +6,14 @@ import GetJumpers from './components/GetJumpers';
 import { useEffect, useRef, useState } from 'react';
 import JumpHistory from './components/JumpHistory';
 import getCurrentTimeStamp from './utilis/getCurrentTimeStamp';
-import { getJumpingData, saveJumpingData } from './utilis/storageUtilis';
+import updateHistory from './utilis/upDateHistory';
+import useLocalStorage from './utilis/useLocalStorage';
 
 function App() {
 
   // pomppijoiden tila ja hallinta
+   // Käytetään useLocalStorage-hookia history-tilan hallintaan
+  const [history, setHistory] = useLocalStorage('jumpingData' , []);
   const [jumpers, setJumpers] = useState(GetJumpers());
   const [currentJumper, setCurrentJumper] =  useState(null);
   const [jumpTime, setJumpTime] = useState(0);
@@ -18,7 +21,6 @@ function App() {
   const [jumpStopped, setJumpStopped] = useState(false);
   const intervalRef = useRef(null);
   const startDateTimeRef = useRef(null);
-  const [history, setHistory] = useState([]);
 
   // haetaan pomppijat 'useEffect' -hookilla ja asetetaan se 'jumpers' tilaan
   useEffect(() => {
@@ -43,8 +45,6 @@ function App() {
   // funktio, joka käynnistää pomppimisen
   const handleStartJumping = (jumperId) => {
     const selectedJumper = jumpers.find(jumper => jumper.id === jumperId);
-    // console.log('Valittu pomppija on: ' + JSON.stringify(selectedJumper))
-    // setStartDateTime(getCurrentDateTime());
     // console.log('datetimedata kun painetaa aloita nappia: ' + startDateTime)
     startDateTimeRef.current =  getCurrentTimeStamp();
     setCurrentJumper(selectedJumper)
@@ -73,12 +73,9 @@ function App() {
     };
     // console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
 
-    // talletetaan jumping data
-    saveJumpingData(jumpingData);
+    //päivitetään historia ja tallennetaan localstorageen
+    setHistory(prevHistory => updateHistory(prevHistory, jumpingData));
 
-    // päivitetään history-tila tallenuksen jälkeen
-    const updateHistory = getJumpingData();
-    setHistory(updateHistory);
     // tyhjennetään startDateTimeRef
     startDateTimeRef.current = null;
   }
