@@ -45,6 +45,8 @@ function App() {
   // funktio, joka käynnistää pomppimisen
   const handleStartJumping = (jumperId) => {
     const selectedJumper = jumpers.find(jumper => jumper.id === jumperId);
+    // console.log('Valittu pomppija on: ' + JSON.stringify(selectedJumper))
+    // setStartDateTime(getCurrentDateTime());
     // console.log('datetimedata kun painetaa aloita nappia: ' + startDateTime)
     startDateTimeRef.current =  getCurrentTimeStamp();
     setCurrentJumper(selectedJumper)

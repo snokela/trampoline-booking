@@ -20,6 +20,19 @@
   width: 25rem;
 }
 
+.history-list {
+  list-style-type: none;
+}
+
+.nav-link {
+  margin-right: 50px;
+  /* color: black; */
+  transition: color 0.3s ease !important;
+}
+
+.nav-link:hover {
+  color: #0c9b9b !important;
+}
 /* .navbar {
   width: 100%;
 } */

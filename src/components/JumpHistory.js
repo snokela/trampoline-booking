@@ -17,7 +17,7 @@ const JumpHistory = ({ history }) => {
             <h6>{user.name}</h6>
             <ul>
               {user.history.map((entry, idx) => (
-                <li key={idx}>
+                <li key={idx} className="history-list">
                   {formatUnixTimeStampToDate(entry.start)}{formatSeconds(entry.timeSecs)}
                 </li>
               ))}
