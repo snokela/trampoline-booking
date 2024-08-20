@@ -45,7 +45,7 @@ function App() {
       clearInterval(intervalRef.current);
     }
     return () => clearInterval(intervalRef.current);
-  }, [ isJumping, jumpTime ]);
+  }, [ isJumping ]);
 
   // funktio, joka käynnistää pomppimisen
   const handleStartJumping = (jumperId) => {

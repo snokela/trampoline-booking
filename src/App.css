@@ -33,6 +33,18 @@
 .nav-link:hover {
   color: #0c9b9b !important;
 }
+
+.carousel-container {
+  max-width: 800px;  /* Maksimileveys karusellille */
+  margin: 0 auto;    /* Keskittää karusellin vaakasuunnassa */
+}
+
+.carousel-image {
+  width: 100%;
+  height: 500px;      /* Aseta kiinteä korkeus, jonka haluat kuville */
+  object-fit: cover;  /* Skaalaa kuvat täyttämään elementin säilyttäen kuvasuhteen */
+}
+
 /* .navbar {
   width: 100%;
 } */
