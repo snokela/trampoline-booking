@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { Navbar } from "react-bootstrap";
 import { Nav } from "react-bootstrap";
 import logo from '../images/logo.png';
+import { Link } from "react-router-dom";
 import '../App.css';
 
 const Header = () => {
@@ -25,13 +26,13 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-          <Nav.Link href="#home" className="nav-link">
+          <Nav.Link as={Link} to="/" className="nav-link">
               Etusivu
             </Nav.Link>
-            <Nav.Link href="#jumping-history" className="nav-link">
+            <Nav.Link as={Link} to="/jumping-history" className="nav-link">
               Pomppuhistoria
             </Nav.Link>
-            <Nav.Link href="#about" className="nav-link">
+            <Nav.Link as={Link} to="/about" className="nav-link">
               Meistä
             </Nav.Link>
           </Nav>

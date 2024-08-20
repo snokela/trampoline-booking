@@ -7,7 +7,7 @@ const GetJumpers = () => {
     {id: 1, name: 'Inkku', imageUrl: inkkuImage },
     {id: 2, name: 'Marsu', imageUrl: marsuImage }
   ];
-  // console.log('GetJumpers called, returning:', jumpers); // Logita palautetut jumpers
+  console.log('GetJumpers kutsuttu, palauttaa:', jumpers); // Logita palautetut jumpers
   return jumpers;
 }
 
