@@ -18,9 +18,9 @@ function App() {
 
   // // pomppijoiden tila ja hallinta
   //  // Käytetään useLocalStorage-hookia history-tilan hallintaan
-  const [history, setHistory] = useLocalStorage('jumpingData' , []);
+  const [history, setHistory] = useLocalStorage('jumpingData', []);
   const [jumpers, setJumpers] = useState(GetJumpers());
-  const [currentJumper, setCurrentJumper] =  useState(null);
+  const [currentJumper, setCurrentJumper] = useState(null);
   const [jumpTime, setJumpTime] = useState(0);
   const [isJumping, setIsJumping] = useState(false);
   const [jumpStopped, setJumpStopped] = useState(false);
@@ -46,7 +46,7 @@ function App() {
       clearInterval(intervalRef.current);
     }
     return () => clearInterval(intervalRef.current);
-  }, [ isJumping ]);
+  }, [isJumping]);
 
   // funktio, joka käynnistää pomppimisen
   const handleStartJumping = (jumperId) => {
@@ -54,7 +54,7 @@ function App() {
     console.log('Valittu pomppija on: ' + JSON.stringify(selectedJumper))
     // setStartDateTime(getCurrentDateTime());
     // console.log('datetimedata kun painetaa aloita nappia: ' + startDateTime)
-    startDateTimeRef.current =  getCurrentTimeStamp();
+    startDateTimeRef.current = getCurrentTimeStamp();
     setCurrentJumper(selectedJumper)
     setIsJumping(true);
     setJumpTime(0);
@@ -64,12 +64,12 @@ function App() {
   // funktio joka lopettaa pomppimisen
   const handleStopJumping = () => {
     // console.log('tämä pomppija lopetti pomppimisen: ' + JSON.stringify(currentJumper) )
-  //   console.log('pomppimisaika lopettamisen jälkeen: ' + jumpTime )
+    //   console.log('pomppimisaika lopettamisen jälkeen: ' + jumpTime )
     setIsJumping(false);
     setJumpStopped(true);
 
     const endDateTime = getCurrentTimeStamp();
-  //   console.log('datetimedata kun painetaa lopeta nappia: ' + endDateTime)
+    //   console.log('datetimedata kun painetaa lopeta nappia: ' + endDateTime)
 
     const jumpingData = {
       name: currentJumper.name,
@@ -79,53 +79,57 @@ function App() {
       endDate: endDateTime.date,
       endTime: endDateTime
     };
-  //   // console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
+    //   // console.log('JumpingData joka talletetaan: ' + JSON.stringify(jumpingData))
 
     //päivitetään historia ja tallennetaan localstorageen
     setHistory(prevHistory => updateHistory(prevHistory, jumpingData));
 
-  //   // tyhjennetään startDateTimeRef
+    //   // tyhjennetään startDateTimeRef
     startDateTimeRef.current = null;
   }
 
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <Routes>
-          <Route
-            path="/"
-            element= {
-              <HomePage
-                jumpers={jumpers}
-                isJumping={isJumping}
-                onStartJumping={handleStartJumping}
-                currentJumper={currentJumper}
-                onStopJumping={handleStopJumping}
-                jumpTime={jumpTime}
-                jumpStopped={jumpStopped}
+    <>
+      <Router>
+        <div className="App">
+          <Header />
+          <main>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <HomePage
+                    jumpers={jumpers}
+                    isJumping={isJumping}
+                    onStartJumping={handleStartJumping}
+                    currentJumper={currentJumper}
+                    onStopJumping={handleStopJumping}
+                    jumpTime={jumpTime}
+                    jumpStopped={jumpStopped}
+                  />
+                }
               />
-            }
-          />
-           <Route
-            path='/jumping-history'
-            element={
-              <JumpHistoryPage
-                history={history}
+              <Route
+                path='/jumping-history'
+                element={
+                  <JumpHistoryPage
+                    history={history}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <AboutPage
+              <Route
+                path="/about"
+                element={
+                  <AboutPage
+                  />
+                }
               />
-            }
-          />
-           </Routes>
+            </Routes>
+          </main>
         </div>
-        <Footer />
-    </Router>
+      </Router>
+      <Footer />
+    </>
   );
 }
 
