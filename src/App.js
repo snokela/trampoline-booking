@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import JumpHistoryPage from './components/JumpHistoryPage';
 import AboutPage from './components/AboutPage';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -122,12 +123,8 @@ function App() {
             }
           />
            </Routes>
-      {/* // <div className="App">
-      //    <Header />
-      //   <UserForm jumpers={jumpers} isJumping={isJumping} onStartJumping={handleStartJumping} />
-      //   <CurrentJumper currentJumper={currentJumper} onStopJumping={handleStopJumping} jumpTime={jumpTime} jumpStopped={jumpStopped} />
-      //   <JumpHistory history={history} /> */}
         </div>
+        <Footer />
     </Router>
   );
 }

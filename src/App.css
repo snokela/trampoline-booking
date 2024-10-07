@@ -1,9 +1,11 @@
 .App {
   text-align: center;
   background-color: #c7d5d5;
+  max-height: 100vh;
   min-height: 100vh;
   width: 100vw;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
+  overflow: hidden;
 }
 
 .small-text {
@@ -37,12 +39,25 @@
 .carousel-container {
   max-width: 800px;  /* Maksimileveys karusellille */
   margin: 0 auto;    /* Keskittää karusellin vaakasuunnassa */
+  max-height: calc(100vh - 100px);
 }
 
 .carousel-image {
   width: 100%;
   height: 500px;      /* Aseta kiinteä korkeus, jonka haluat kuville */
   object-fit: cover;  /* Skaalaa kuvat täyttämään elementin säilyttäen kuvasuhteen */
+}
+
+.footer-container {
+  height: 80px;
+  overflow: hidden;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+.footer-text {
+  padding-top: 2em;
 }
 
 /* .navbar {
