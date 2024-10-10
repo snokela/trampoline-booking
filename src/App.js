@@ -10,10 +10,9 @@ import HomePage from './components/HomePage';
 import JumpHistoryPage from './components/JumpHistoryPage';
 import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
-import { JumperDataContext, JumperProvider } from './contexts/JumperDataContext';
+import { JumperProvider } from './contexts/JumperDataContext';
 
 function App() {
-
   const [history, setHistory] = useLocalStorage('jumpingData', []);
   const [jumpers, setJumpers] = useState(GetJumpers());
   const [currentJumper, setCurrentJumper] = useState(null);

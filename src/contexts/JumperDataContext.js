@@ -1,7 +1,7 @@
 import { createContext} from "react";
 import useLocalStorage from "../utilis/useLocalStorage";
 
-const JumperDataContext = createContext();
+export const JumperDataContext = createContext();
 
 // lisätään jumperprovider hallitsemaan tilaa mm. localstoragetallenuksen
 // jumpersData = key localstorageen
