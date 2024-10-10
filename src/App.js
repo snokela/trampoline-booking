@@ -63,6 +63,7 @@ function App() {
 
     const endDateTime = getCurrentTimeStamp();
 
+      // tämä objekti tallennetaan contextiin
     const jumpingData = {
       name: currentJumper.name,
       timeSecs: jumpTime,
