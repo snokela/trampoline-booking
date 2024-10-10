@@ -1,15 +1,4 @@
-// import React from "react";
-
-// const JumpHistoryPage = () => {
-//   return (
-//     <p>TÄHÄN TULEE POMPPUHISTORIA</p>
-//   )
-// }
-
-// export default JumpHistoryPage;
 import React from "react";
-// import { useState, useEffect } from "react";
-// import { getJumpingData } from "../utilis/getJumpingData";
 import { formatUnixTimeStampToDate } from '../utilis/formatUnixTimeStamps';
 import { formatSeconds } from "../utilis/formatSeconds";
 
