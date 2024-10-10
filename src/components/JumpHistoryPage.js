@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { formatUnixTimeStampToDate } from '../utilis/formatUnixTimeStamps';
 import { formatSeconds } from "../utilis/formatSeconds";
 
 const JumpHistory = ({ history }) => {
+
+   //  tuodaan contextista jumperdata
+   const { jumpersData } = useContext(JumperDataContext);
 
   return (
     <div className="justify-content-center pb-3">
