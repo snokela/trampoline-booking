@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import GetJumpers from './components/GetJumpers';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import getCurrentTimeStamp from './utilis/getCurrentTimeStamp';
 import updateHistory from './utilis/upDateHistory';
 import useLocalStorage from './utilis/useLocalStorage';
@@ -10,6 +10,7 @@ import HomePage from './components/HomePage';
 import JumpHistoryPage from './components/JumpHistoryPage';
 import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
+import { JumperDataContext } from './contexts/JumperDataContext';
 
 function App() {
 
