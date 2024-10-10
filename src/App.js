@@ -10,7 +10,7 @@ import HomePage from './components/HomePage';
 import JumpHistoryPage from './components/JumpHistoryPage';
 import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
-import { JumperDataContext } from './contexts/JumperDataContext';
+import { JumperDataContext, JumperProvider } from './contexts/JumperDataContext';
 
 function App() {
 
@@ -82,7 +82,7 @@ function App() {
   }
 
   return (
-    <>
+    <JumperProvider>
       <Router>
         <div className="App">
           <Header />
@@ -122,7 +122,7 @@ function App() {
         </div>
       </Router>
       <Footer />
-    </>
+    </JumperProvider>
   );
 }
 
