@@ -6,19 +6,7 @@ import { JumperDataContext } from "../contexts/JumperDataContext";
 const JumpHistory = () => {
   //  tuodaan contextista jumperdata
   const { jumpersData } = useContext(JumperDataContext);
-
-  //  JumperData contextista: [{
-  //   "jumperId": 2,
-  //    "name": 'marsu',
-  //   "history": [
-  //     { "timeSecs": 4, "startTime": 1728732547, "endTime": 1728732552 },
-  //     { "timeSecs": 3, "startTime": 1728732570, "endTime": 1728732574 }
-  //   ]
-  // }]
-
   const history = jumpersData;
-  // console.log('historydata: ' + JSON.stringify(history));
-  // console.log('historydata: ' + history[0].name);
 
   return (
     <div className="justify-content-center pb-3">
