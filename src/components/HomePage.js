@@ -22,14 +22,6 @@ const HomePage = () => {
   const intervalRef = useRef(null);
   const startDateTimeRef = useRef(null);
 
-  // useEffect(() => {
-  //   // haetaan kaikki hyppijät tällähetkellä kahdesta kovakoodatusta pomppijasta listaan
-  //   const jumpersList = GetJumpers();
-  //   console.log('Asetetaan hyppijälista:', jumpersList);
-  //   setJumpers(jumpersList);
-  //   console.log('!!!Jumpers on setJumpersin jälkeen: ' + JSON.stringify(jumpers))
-  // }, []);
-
   // Ajastimen hallinta 'useEffect'-hookilla
   useEffect(() => {
     if (isJumping) {
