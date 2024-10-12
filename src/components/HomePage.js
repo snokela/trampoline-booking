@@ -5,11 +5,14 @@ import CurrentJumper from '../components/CurrentJumper';
 import getCurrentTimeStamp from '../utilis/getCurrentTimeStamp';
 import { JumperDataContext } from "../contexts/JumperDataContext";
 import GetJumpers from "./GetJumpers";
+import { logDOM } from "@testing-library/react";
 
 const HomePage = () => {
 
   //  tuodaan contextista jumperdata
   const { jumpersData, setJumpersData } = useContext(JumperDataContext);
+  console.log('JumperData contextista: ' + JSON.stringify(jumpersData));
+
   // tilanhallinta
   const [jumpers, setJumpers] = useState(GetJumpers);
   const [currentJumper, setCurrentJumper] = useState(null);
@@ -30,7 +33,7 @@ const HomePage = () => {
   // Ajastimen hallinta 'useEffect'-hookilla
   useEffect(() => {
     if (isJumping) {
-      console.log('Käynnistetään ajastin')
+      console.log('Käynnistetään ajastin**************')
       intervalRef.current = setInterval(() => {
         setJumpTime(prevTime => prevTime + 1);
       }, 1000);
@@ -57,26 +60,39 @@ const HomePage = () => {
   const handleStopJumping = () => {
     setIsJumping(false);
     setJumpStopped(true);
-
+  
     const endDateTime = getCurrentTimeStamp();
-
-      // tämä objekti tallennetaan contextiin
-    const jumpingData = {
-      name: currentJumper.name,
+  
+    const newHistoryEntry = {
       timeSecs: jumpTime,
       startDate: startDateTimeRef.current.date,
       startTime: startDateTimeRef.current,
       endDate: endDateTime.date,
       endTime: endDateTime
     };
-
-    //tallennetaan uusi pomppijadata contextiin
-    setJumpersData((prev) => [...prev, jumpingData])
-    // setHistory(prevHistory => updateHistory(prevHistory, jumpingData));
-
-    //tyhjennetään startDateTimeRef
+  
+    setJumpersData((prev) => {
+      const jumperExists = prev.find(jumper => jumper.jumperId === currentJumper.id);
+  
+      if (jumperExists) {
+        return prev.map(jumper =>
+          jumper.jumperId === currentJumper.id
+            ? { ...jumper, history: [...jumper.history, newHistoryEntry] }
+            : jumper
+        );
+      } else {
+        const newJumperHistory = {
+          jumperId: currentJumper.id,
+          name: currentJumper.name,
+          history: [newHistoryEntry]
+        };
+        return [...prev, newJumperHistory];
+      }
+    });
+    
     startDateTimeRef.current = null;
-  }
+  };
+
 
   return (
     <div>

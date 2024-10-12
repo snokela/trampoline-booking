@@ -4,7 +4,7 @@ import '../App.css';
 
 const UserForm = ( { jumpers, isJumping, onStartJumping, setSelectedJumper } ) => {
   // valitun pomppijan tilanhallinta ja tilan päivittäminen pomppijaa valitessa
-  console.log('Ollaan userformissa, Jumpers on nyt: ' + JSON.stringify(jumpers))
+  // console.log('Ollaan userformissa, Jumpers on nyt: ' + JSON.stringify(jumpers))
   const [selectedJumper, setSelectedJumperState] = useState('');
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const UserForm = ( { jumpers, isJumping, onStartJumping, setSelectedJumper } ) =
   }
 
   const handleStartClick = () => {
-    console.log('Aloita pomppinen nappia painettu. Valitun pomppijan ID: ' + selectedJumper);
+    // console.log('Aloita pomppinen nappia painettu. Valitun pomppijan ID: ' + selectedJumper);
     if (selectedJumper) {
       onStartJumping(Number(selectedJumper));
     }
@@ -27,7 +27,7 @@ const UserForm = ( { jumpers, isJumping, onStartJumping, setSelectedJumper } ) =
 
   // renderöidään optionsit dropdown listaan pomppijoista
   const renderOptions = () => {
-    console.log('Jumpers on nyt ennen renderöintiä: ' + JSON.stringify(jumpers))
+    // console.log('Jumpers on nyt ennen renderöintiä: ' + JSON.stringify(jumpers))
     // if (!Array.isArray(jumpers)) {
     //   return null;
     // }
