@@ -60,9 +60,9 @@ const HomePage = () => {
   const handleStopJumping = () => {
     setIsJumping(false);
     setJumpStopped(true);
-  
+
     const endDateTime = getCurrentTimeStamp();
-  
+
     const newHistoryEntry = {
       timeSecs: jumpTime,
       startDate: startDateTimeRef.current.date,
@@ -70,17 +70,19 @@ const HomePage = () => {
       endDate: endDateTime.date,
       endTime: endDateTime
     };
-  
+
     setJumpersData((prev) => {
       const jumperExists = prev.find(jumper => jumper.jumperId === currentJumper.id);
-  
+
       if (jumperExists) {
+        console.log("ExistingJumper found");
         return prev.map(jumper =>
           jumper.jumperId === currentJumper.id
             ? { ...jumper, history: [...jumper.history, newHistoryEntry] }
             : jumper
         );
       } else {
+        console.log('ExistingJumper not found');
         const newJumperHistory = {
           jumperId: currentJumper.id,
           name: currentJumper.name,
@@ -89,10 +91,10 @@ const HomePage = () => {
         return [...prev, newJumperHistory];
       }
     });
-    
-    startDateTimeRef.current = null;
-  };
 
+    //tyhjennetään startDateTimeRef
+    startDateTimeRef.current = null;
+  }
 
   return (
     <div>
